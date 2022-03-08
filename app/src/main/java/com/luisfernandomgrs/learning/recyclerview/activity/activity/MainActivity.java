@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Application;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.luisfernandomgrs.learning.recyclerview.R;
+import com.luisfernandomgrs.learning.recyclerview.RecyclerItemClickListener;
 import com.luisfernandomgrs.learning.recyclerview.adapter.AdapterFilms;
 import com.luisfernandomgrs.learning.recyclerview.model.Film;
 
@@ -40,6 +44,32 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewFilm.setHasFixedSize(true);
         recyclerViewFilm.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         recyclerViewFilm.setAdapter(adapterFilms);
+
+        // event click personal adapted...
+        recyclerViewFilm.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerViewFilm,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Film filmItem = filmList.get(position);
+                                Toast.makeText(MainActivity.this, "Filme Selecionado: " + filmItem.getTitleFilm(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                Film filmItem = filmList.get(position);
+                                Toast.makeText(MainActivity.this, "Filme Reservado: "+filmItem.getTitleFilm(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                )
+        );
     }
 
     public void myFillListFilm() {
