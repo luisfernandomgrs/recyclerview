@@ -119,11 +119,5 @@ public class MainActivity extends AppCompatActivity {
 
         film = new Film("A Man Apart","2003","Action & Adventure");
         this.filmList.add(film);
-
-        film = new Film("01 - Não será exibido","2022","Developer Test");
-        this.filmList.add(film);
-
-        film = new Film("02 - Não será exibido","2022","Developer Test");
-        this.filmList.add(film);
     }
 }
