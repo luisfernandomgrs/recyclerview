@@ -13,7 +13,7 @@ import com.luisfernandomgrs.learning.recyclerview.model.Film;
 
 import java.util.List;
 
-public class AdapterFilms extends RecyclerView.Adapter<AdapterFilms.MyViewHolder> {
+public class AdapterFilms extends RecyclerView.Adapter<AdapterFilms.ViewHolderFilms> {
    private List<Film> filmList;
    public AdapterFilms(List<Film> filmList) {
       this.filmList = filmList;
@@ -21,13 +21,13 @@ public class AdapterFilms extends RecyclerView.Adapter<AdapterFilms.MyViewHolder
 
    @NonNull
    @Override
-   public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-      View adapter_list_films = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_list_films, parent, false);
-      return new MyViewHolder(adapter_list_films);
+   public ViewHolderFilms onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+      View adapterListFilms = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_list_films, parent, false);
+      return new ViewHolderFilms(adapterListFilms);
    }
 
    @Override
-   public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+   public void onBindViewHolder(@NonNull ViewHolderFilms holder, int position) {
       Film film = filmList.get(position);
 
       holder.textTitleFilm.setText(film.getTitleFilm());
@@ -40,12 +40,12 @@ public class AdapterFilms extends RecyclerView.Adapter<AdapterFilms.MyViewHolder
       return filmList.size();
    }
 
-   public class MyViewHolder extends RecyclerView.ViewHolder {
+   public class ViewHolderFilms extends RecyclerView.ViewHolder {
       TextView textTitleFilm;
       TextView textYearFilm;
       TextView textGenreFilm;
 
-      public MyViewHolder(@NonNull View itemView) {
+      public ViewHolderFilms(@NonNull View itemView) {
          super(itemView);
 
          textTitleFilm = itemView.findViewById(R.id.textTitleFilm);
